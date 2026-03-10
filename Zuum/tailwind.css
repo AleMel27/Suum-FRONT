@@ -1,0 +1,10 @@
+/* tailwind.css */
+
+/* 1️⃣ Carga los estilos base de Tailwind (reseteo y tipografía básica) */
+@tailwind base;
+
+/* 2️⃣ Carga componentes predefinidos de Tailwind (botones, formularios, etc.) */
+@tailwind components;
+
+/* 3️⃣ Carga las utilidades de Tailwind (clases como flex, p-4, text-gray-700, etc.) */
+@tailwind utilities;
