@@ -1,22 +1,22 @@
 function Header() {
   return (
-    <header className="flex justify-between items-center px-4 py-3 bg-pink-300 text-gray-700 text-sm">
+    <header className="flex justify-between items-center px-4 py-3 bg-[#ff8abe] text-gray-700 text-sm">
 
       {/* Soporte */}
-        <div>
-          <span className="block">Atención al cliente</span><br/>
+        <div className="block ml-5">
+          <span className="block font-semibold">Atención al cliente</span>
           <span className="font-semibold">123-456-789</span>
         </div>
 
       {/* Logo */}
-      <a href="index.html">
-        <img src="/logo.png" alt="logo" className="w-44" />
+      <a>
+        <img src="/src/assets/logo.png" alt="logo" className="w-44" />
       </a>
 
       {/* Usuario y carrito */}
       <div className="flex items-center gap-4">
         {/* Carrito */}
-        <a href="canshop.html" className="text-2xl text-gray-700">
+        <a className="text-2xl text-gray-700">
           <i className="fa-solid fa-bag-shopping"></i>
         </a>
 
@@ -33,9 +33,9 @@ function Header() {
           <div className="dropdown-menu dropdown-menu-end p-2">
             <div className="card border-0">
               <div className="card-body p-2">
-                <a className="dropdown-item" href="perfil.html">Mi perfil</a>
-                <a className="dropdown-item" href="pedidos.html">Mis pedidos</a>
-                <a className="dropdown-item text-danger" href="logout.html">Cerrar sesión</a>
+                <a className="dropdown-item">Mi perfil</a>
+                <a className="dropdown-item">Mis pedidos</a>
+                <a className="dropdown-item text-danger">Cerrar sesión</a>
               </div>
             </div>
           </div>
