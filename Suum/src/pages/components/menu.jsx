@@ -1,14 +1,47 @@
-function Menu(){
-    return(
-        <div className="menu">
-            <ul className="flex gap-6 text-sm font-semibold">
-                <li><a>Inicio</a></li>
-                <li><a>Polos</a></li>
-                <li><a>Blusas</a></li>
-                <li><a>Chompas</a></li>
-            </ul>
-        </div>
-    )
+import { Link } from "react-router-dom";
+
+function Menu() {
+  return (
+    <nav className="w-full bg-[#f07368]">
+      <div className="max-w-6xl mx-auto">
+        <ul className="flex justify-around items-center py-4 font-semibold m-0 list-none">
+
+          <li>
+            <Link
+              to="/"
+              className="no-underline text-black hover:text-gray-800 hover:underline transition">
+              Inicio
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/vestidos"
+              className="no-underline text-black hover:text-gray-800 hover:underline transition">
+              Vestidos
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/blusas"
+              className="no-underline text-black hover:text-gray-800 hover:underline transition">
+              Blusas
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/pantalones"
+              className="no-underline text-black hover:text-gray-800 hover:underline transition">
+              Pantalones
+            </Link>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  );
 }
-//main
+
 export default Menu;
