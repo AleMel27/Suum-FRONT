@@ -1,41 +1,41 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Menu() {
   return (
-    <nav className="w-full bg-[#f07368]">
+    <nav className="w-full bg-[#ffc89a]">
       <div className="max-w-6xl mx-auto">
         <ul className="flex justify-around items-center py-4 font-semibold m-0 list-none">
 
           <li>
-            <Link
+            <NavLink
               to="/"
               className="no-underline text-black hover:text-gray-800 hover:underline transition">
-              Inicio
-            </Link>
+              INICIO
+            </NavLink>
           </li>
 
           <li>
-            <Link
+            <NavLink
               to="/vestidos"
               className="no-underline text-black hover:text-gray-800 hover:underline transition">
-              Vestidos
-            </Link>
+              VESTIDOS
+            </NavLink>
           </li>
 
           <li>
-            <Link
+            <NavLink
               to="/blusas"
               className="no-underline text-black hover:text-gray-800 hover:underline transition">
-              Blusas
-            </Link>
+              BLUSAS
+            </NavLink>
           </li>
 
           <li>
-            <Link
+            <NavLink
               to="/pantalones"
               className="no-underline text-black hover:text-gray-800 hover:underline transition">
-              Pantalones
-            </Link>
+              PANTALONES
+            </NavLink>
           </li>
 
         </ul>

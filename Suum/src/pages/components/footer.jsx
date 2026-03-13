@@ -104,7 +104,7 @@ function Footer() {
 
             <div className="flex gap-3">
               <a
-                href="https://www.facebook.com/arbuus.moda"
+                href="#"
                 className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 text-white transition-all duration-500 ease-in-out hover:bg-[#bfe5df] hover:text-[#353535] no-underline"
               >
                 <i className="fab fa-facebook-f"></i>

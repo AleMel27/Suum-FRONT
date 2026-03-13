@@ -11,8 +11,10 @@ function Header() {
       </div>
 
       {/* Logo */}
-      <NavLink to="/" className="absolute left-1/2 -translate-x-1/2">
-        <img src="/src/assets/logo.png" alt="logo" className="w-44" />
+      <NavLink to="/" className="no-underline text-black absolute left-1/2 -translate-x-1/2">
+        <h1 className="font-logo text-5xl tracking-[0.35em]">
+          SÜÜM
+        </h1>
       </NavLink>
 
       {/* Usuario y carrito */}
