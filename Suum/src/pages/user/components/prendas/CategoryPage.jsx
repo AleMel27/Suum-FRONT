@@ -1,4 +1,4 @@
-import ProductCard from "./components/home/ProductCard";
+import ProductCard from "../home/ProductCard.jsx";
 
 function CategoryPage({ titulo, productos }) {
   return (

@@ -1,4 +1,4 @@
-import CategoryPage from "./CategoryPage.jsx";
+import CategoryPage from "./components/prendas/CategoryPage.jsx";
 
 function Vestidos() {
 
