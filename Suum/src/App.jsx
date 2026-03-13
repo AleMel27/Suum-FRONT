@@ -17,6 +17,8 @@ import Pagos from "./pages/user/pagos.jsx"
 import Cart from "./pages/user/cart.jsx"
 
 import Dashboard from "./pages/admin/dashboard.jsx"
+//import Dashboard from "./pages/admin/Categorias.jsx"
+
 
 function App() {
   return (
