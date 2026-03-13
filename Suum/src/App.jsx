@@ -1,6 +1,8 @@
-import Header from "./pages/components/header.jsx"
-import Menu from "./pages/components/menu.jsx"
-import Footer from "./pages/components/footer.jsx"
+import { Routes, Route } from "react-router-dom"
+
+import UserLayout from "./pages/components/UserLayout.jsx"
+import AdminLayout from "./pages/admin/components/AdminLayout.jsx"
+import AdminRoute from "./routes/AdminRoute.jsx"
 
 import Home from "./pages/user/home.jsx"
 import Vestidos from "./pages/user/vestidos.jsx"
@@ -14,15 +16,14 @@ import Envios from "./pages/user/envios.jsx"
 import Pagos from "./pages/user/pagos.jsx"
 import Cart from "./pages/user/cart.jsx"
 
-import { Routes, Route } from "react-router-dom"
+import Dashboard from "./pages/admin/dashboard.jsx"
 
 function App() {
   return (
-    <>
-      <Header />
-      <Menu />
+    <Routes>
 
-      <Routes>
+      {/* USER */}
+      <Route element={<UserLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/vestidos" element={<Vestidos />} />
         <Route path="/blusas" element={<Blusas />} />
@@ -34,10 +35,22 @@ function App() {
         <Route path="/envios" element={<Envios />} />
         <Route path="/pagos" element={<Pagos />} />
         <Route path="/cart" element={<Cart />} />
-      </Routes>
+        <Route path="/admin/dashboard" element={<Dashboard />} />
 
-      <Footer />
-    </>
+      </Route>
+
+      {/* ADMIN */}
+      <Route
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+      </Route>
+
+    </Routes>
   )
 }
 
