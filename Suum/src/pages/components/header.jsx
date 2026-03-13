@@ -21,7 +21,7 @@ function Header() {
       <div className="flex items-center gap-4">
 
         {/* Carrito */}
-        <NavLink to="/carrito" className="text-2xl text-gray-700">
+        <NavLink to="/cart" className="text-2xl text-gray-700">
           <i className="fa-solid fa-bag-shopping"></i>
         </NavLink>
 
