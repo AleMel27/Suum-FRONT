@@ -1,30 +1,17 @@
+import { useEffect, useState } from "react";
 import FeaturedProducts from "./components/home/FeaturedProducts";
 import Collections from "./components/home/Collections";
 
 function Home() {
 
-    const productos = [
-        {
-            nombre: "Vestido Polka",
-            precio: "39.00",
-            imagen: "/src/assets/des1.jpg"
-        },
-        {
-            nombre: "Blazer príncipe de Gales",
-            precio: "69.00",
-            imagen: "/src/assets/des2.jpg"
-        },
-        {
-            nombre: "Set sastre",
-            precio: "69.00",
-            imagen: "/src/assets/des3.jpg"
-        },
-        {
-            nombre: "Set vichy",
-            precio: "45.00",
-            imagen: "/src/assets/des4.jpg"
-        },
-    ];
+    const [productos, setProductos] = useState([]);
+    
+    useEffect(() => {
+    fetch("https://localhost:7159/api/Productos")
+        .then((res) => res.json())
+        .then((data) => setProductos(data))
+        .catch((error) => console.error(error));
+}, []);
 
     return (
         <section className="bg-[#ffe2e7] w-full">

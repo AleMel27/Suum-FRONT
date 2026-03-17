@@ -17,7 +17,7 @@ function Header() {
         </h1>
       </NavLink>
 
-      {/* Usuario y carrito */}
+      {/* Botones */}
       <div className="flex items-center gap-4">
 
         {/* Carrito */}
@@ -25,29 +25,17 @@ function Header() {
           <i className="fa-solid fa-bag-shopping"></i>
         </NavLink>
 
-        {/* Usuario con dropdown */}
-        <div className="dropdown">
-          <button
-            className="btn btn-light dropdown-toggle flex items-center gap-2"
-            type="button"
-            data-bs-toggle="dropdown"
-          >
-            <i className="fa-solid fa-user"></i>
-            <span id="aUser">Iniciar Sesión</span>
-          </button>
-
-          <div className="dropdown-menu dropdown-menu-end p-2">
-            <div className="card border-0">
-              <div className="card-body p-2">
-                <NavLink to="/perfil" className="dropdown-item">Mi perfil</NavLink>
-                <NavLink to="/pedidos" className="dropdown-item">Mis pedidos</NavLink>
-                <NavLink to="/logout" className="dropdown-item text-danger">Cerrar sesión</NavLink>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Login */}
+        <NavLink
+          to="/login"
+          className="flex items-center gap-2 bg-white px-4 py-2 rounded-full hover:bg-black hover:text-white transition"
+        >
+          <i className="fa-solid fa-user"></i>
+          Iniciar sesión
+        </NavLink>
 
       </div>
+
     </header>
   );
 }

@@ -4,6 +4,7 @@ import UserLayout from "./pages/components/UserLayout.jsx"
 import AdminLayout from "./pages/admin/components/AdminLayout.jsx"
 import AdminRoute from "./routes/AdminRoute.jsx"
 
+
 import Home from "./pages/user/home.jsx"
 import Vestidos from "./pages/user/vestidos.jsx"
 import Blusas from "./pages/user/blusas.jsx"
@@ -15,9 +16,11 @@ import Consultas from "./pages/user/consultas.jsx"
 import Envios from "./pages/user/envios.jsx"
 import Pagos from "./pages/user/pagos.jsx"
 import Cart from "./pages/user/cart.jsx"
+import Login from "./pages/user/login.jsx"
 
 import Dashboard from "./pages/admin/dashboard.jsx"
-//import Dashboard from "./pages/admin/Categorias.jsx"
+import Productos from "./pages/admin/productos.jsx"
+import Ventas from "./pages/admin/ventas.jsx"
 
 
 function App() {
@@ -37,19 +40,17 @@ function App() {
         <Route path="/envios" element={<Envios />} />
         <Route path="/pagos" element={<Pagos />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
 
       </Route>
 
       {/* ADMIN */}
-      <Route
-        element={
-          <AdminRoute>
-            <AdminLayout />
-          </AdminRoute>
-        }
-      >
-        <Route path="/admin/dashboard" element={<Dashboard />} />
+      <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="productos" element={<Productos />} />
+        <Route path="ventas" element={<Ventas />} />
+
       </Route>
 
     </Routes>

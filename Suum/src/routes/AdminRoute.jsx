@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom"
 
-function AdminRoute() {
+function AdminRoute({ children }) {
 
   const usuario = {
     logueado: true,
@@ -11,7 +11,7 @@ function AdminRoute() {
     return <Navigate to="/" />
   }
 
-  return <Navigate to="/admin/dashboard" />
+  return children
 }
 
 export default AdminRoute
