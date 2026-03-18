@@ -15,10 +15,13 @@ import Consultas from "./pages/user/consultas.jsx"
 import Envios from "./pages/user/envios.jsx"
 import Pagos from "./pages/user/pagos.jsx"
 import Cart from "./pages/user/cart.jsx"
+import Login from "./pages/user/login.jsx"
 
 import Dashboard from "./pages/admin/dashboard.jsx"
-//import Dashboard from "./pages/admin/Categorias.jsx"
-
+import Productos from "./pages/admin/Productos/productos.jsx"
+import CrearProducto from "./pages/admin/Productos/CrearProducto.jsx"
+import EditarProducto from "./pages/admin/Productos/EditarProducto.jsx"
+import Ventas from "./pages/admin/ventas.jsx"
 
 function App() {
   return (
@@ -37,19 +40,20 @@ function App() {
         <Route path="/envios" element={<Envios />} />
         <Route path="/pagos" element={<Pagos />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-
+        <Route path="/login" element={<Login />} />
       </Route>
 
       {/* ADMIN */}
-      <Route
-        element={
-          <AdminRoute>
-            <AdminLayout />
-          </AdminRoute>
-        }
-      >
-        <Route path="/admin/dashboard" element={<Dashboard />} />
+      <Route path="/admin" element={
+        <AdminRoute>
+          <AdminLayout />
+        </AdminRoute>
+      }>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="productos" element={<Productos />} />
+        <Route path="productos/nuevo" element={<CrearProducto />} />
+        <Route path="productos/editar/:id" element={<EditarProducto />} />
+        <Route path="ventas" element={<Ventas />} />
       </Route>
 
     </Routes>

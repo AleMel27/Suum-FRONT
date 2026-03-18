@@ -1,19 +1,26 @@
+import { useEffect, useState } from "react";
 import CategoryPage from "./components/prendas/CategoryPage.jsx";
 
 function Pantalones() {
 
-  const productos = [
-    {
-      nombre: "Pantalón formal",
-      precio: "129.00",
-      imagen: "/src/assets/des1.jpg"
-    },
-    {
-      nombre: "Pantalón casual",
-      precio: "99.00",
-      imagen: "/src/assets/des2.jpg"
-    }
-  ];
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+
+    fetch("https://localhost:7159/api/Productos")
+      .then(res => res.json())
+      .then(data => {
+
+        const pantalones = data.filter(
+          p => p.id_categoria === 3
+        );
+
+        setProductos(pantalones);
+
+      })
+      .catch(err => console.error(err));
+
+  }, []);
 
   return (
     <CategoryPage

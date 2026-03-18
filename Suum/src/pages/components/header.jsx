@@ -1,6 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useState } from "react";
 
 function Header() {
+
+  const { usuario, logout } = useAuth();
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/"); // 🔥 lo manda al home sí o sí
+  };
+
   return (
     <header className="relative flex justify-between items-center px-4 py-4 bg-[#ff8abe] text-gray-700 text-sm">
 
@@ -17,37 +29,73 @@ function Header() {
         </h1>
       </NavLink>
 
-      {/* Usuario y carrito */}
-      <div className="flex items-center gap-4">
+      {/* Botones */}
+      <div className="flex items-center gap-4 relative">
 
         {/* Carrito */}
         <NavLink to="/cart" className="text-2xl text-gray-700">
           <i className="fa-solid fa-bag-shopping"></i>
         </NavLink>
 
-        {/* Usuario con dropdown */}
-        <div className="dropdown">
-          <button
-            className="btn btn-light dropdown-toggle flex items-center gap-2"
-            type="button"
-            data-bs-toggle="dropdown"
+        {/* 🔥 SI NO HAY USUARIO */}
+        {!usuario && (
+          <NavLink
+            to="/login"
+            className="flex items-center gap-2 bg-white px-4 py-2 rounded-full text-black transition no-underline"
           >
             <i className="fa-solid fa-user"></i>
-            <span id="aUser">Iniciar Sesión</span>
-          </button>
+            Iniciar sesión
+          </NavLink>
+        )}
 
-          <div className="dropdown-menu dropdown-menu-end p-2">
-            <div className="card border-0">
-              <div className="card-body p-2">
-                <NavLink to="/perfil" className="dropdown-item">Mi perfil</NavLink>
-                <NavLink to="/pedidos" className="dropdown-item">Mis pedidos</NavLink>
-                <NavLink to="/logout" className="dropdown-item text-danger">Cerrar sesión</NavLink>
+        {/* 🔥 SI ES USUARIO NORMAL */}
+        {usuario && usuario.rol !== "admin" && (
+          <div className="relative">
+
+            {/* BOTÓN */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="bg-white px-4 py-2 rounded-full hover:bg-black hover:text-white transition"
+            >
+              Hola, {usuario.correo.split("@")[0]} 👋
+            </button>
+
+            {/* DROPDOWN */}
+            {open && (
+              <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50">
+
+                <button
+                  onClick={() => navigate("/perfil")}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  Mi cuenta
+                </button>
+
+                <button
+                  onClick={() => navigate("/mis-pedidos")}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  Mis pedidos
+                </button>
+
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
+                >
+                  Cerrar sesión
+                </button>
+
               </div>
-            </div>
+            )}
+
           </div>
-        </div>
+        )}
+
+        {/* 🔥 ADMIN NO VE NADA EN HEADER USER */}
+        {usuario && usuario.rol === "admin" && null}
 
       </div>
+
     </header>
   );
 }

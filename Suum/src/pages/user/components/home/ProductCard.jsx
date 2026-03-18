@@ -7,7 +7,8 @@ function ProductCard({ nombre, precio, imagen }) {
 
                 <div className="relative">
                     <img
-                        src={imagen}
+                        src={`https://localhost:7159${imagen}`}
+                        alt={nombre}
                         className="w-full h-[340px] object-cover"
                     />
 
