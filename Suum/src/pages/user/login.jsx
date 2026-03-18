@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
 
@@ -7,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+    const { login } = useAuth(); // 🔥 aquí está la magia
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -27,6 +29,12 @@ function Login() {
             const data = await res.json();
 
             if (res.ok) {
+
+                // 🔥 GUARDAR USUARIO EN CONTEXTO
+                login({
+                    correo: correo,
+                    rol: data.rol
+                });
 
                 alert("Inicio de sesión exitoso 🎉");
 
