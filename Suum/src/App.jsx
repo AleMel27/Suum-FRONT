@@ -22,6 +22,7 @@ import Productos from "./pages/admin/Productos/productos.jsx"
 import CrearProducto from "./pages/admin/Productos/CrearProducto.jsx"
 import EditarProducto from "./pages/admin/Productos/EditarProducto.jsx"
 import Ventas from "./pages/admin/ventas.jsx"
+import Perfil from "./pages/admin/Perfil.jsx"
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path="productos/nuevo" element={<CrearProducto />} />
         <Route path="productos/editar/:id" element={<EditarProducto />} />
         <Route path="ventas" element={<Ventas />} />
+        <Route path="perfil" element={<Perfil />} />
       </Route>
 
     </Routes>

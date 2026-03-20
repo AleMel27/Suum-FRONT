@@ -63,6 +63,15 @@ function AdminLayout() {
               💰 Ventas
             </NavLink>
 
+            <NavLink
+              to="/admin/perfil"
+              className={({ isActive }) =>
+                `${base} ${hover} ${isActive ? active : ""}`
+              }
+            >
+              👤 Perfil
+            </NavLink>
+
           </nav>
 
         </div>
