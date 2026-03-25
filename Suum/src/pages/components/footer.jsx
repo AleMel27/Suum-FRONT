@@ -8,7 +8,7 @@ function Footer() {
 
           {/* Compañia */}
           <div className="w-full md:w-1/4 px-4 mb-8">
-            <h4 className="text-white text-xl mb-6 font-medium border-b-2 border-[#00c3FF] pb-2 inline-block">
+            <h4 className="text-white text-xl mb-6 font-medium border-b-2 border-[#ffe2e7] pb-2 inline-block">
               Compañia
             </h4>
 
@@ -44,7 +44,7 @@ function Footer() {
 
           {/* Contactanos */}
           <div className="w-full md:w-1/4 px-4 mb-8">
-            <h4 className="text-white text-xl mb-6 font-medium border-b-2 border-[#00c3FF] pb-2 inline-block">
+            <h4 className="text-white text-xl mb-6 font-medium border-b-2 border-[#ffe2e7] pb-2 inline-block">
               Contáctanos
             </h4>
 
@@ -80,7 +80,7 @@ function Footer() {
 
           {/* Redes */}
           <div className="w-full md:w-1/4 px-4 mb-8">
-            <h4 className="text-white text-xl mb-6 font-medium border-b-2 border-[#00c3FF] pb-2 inline-block">
+            <h4 className="text-white text-xl mb-6 font-medium border-b-2 border-[#ffe2e7] pb-2 inline-block">
               Síguenos
             </h4>
 

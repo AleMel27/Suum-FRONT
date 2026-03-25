@@ -6,101 +6,176 @@ function CrearProducto() {
     const navigate = useNavigate()
 
     const [categorias, setCategorias] = useState([])
+    const [tallas, setTallas] = useState([])
     const [preview, setPreview] = useState(null)
 
     const [producto, setProducto] = useState({
         nombre: "",
         precio: "",
-        stock: "",
         id_categoria: "",
-        imagen: null
+        imagen: null,
+        tallas: []
     })
 
     useEffect(() => {
-        fetch("https://localhost:7159/api/categorias")
-            .then(res => res.json())
-            .then(data => setCategorias(data))
+        cargarDatos()
     }, [])
 
-    const handleImagen = (e) => {
-        const file = e.target.files[0]
-        setProducto({ ...producto, imagen: file })
-        setPreview(URL.createObjectURL(file))
+    const cargarDatos = async () => {
+        const cat = await fetch("https://localhost:7159/api/categorias").then(r => r.json())
+        const tal = await fetch("https://localhost:7159/api/tallas").then(r => r.json())
+
+        setCategorias(cat)
+        setTallas(tal)
     }
 
-    const agregarProducto = async (e) => {
+    const toggleTalla = (id_talla) => {
+        const existe = producto.tallas.find(t => t.id_talla === id_talla)
+
+        if (existe) {
+            setProducto({
+                ...producto,
+                tallas: producto.tallas.filter(t => t.id_talla !== id_talla)
+            })
+        } else {
+            setProducto({
+                ...producto,
+                tallas: [...producto.tallas, { id_talla, stock: 0 }]
+            })
+        }
+    }
+
+    const actualizarStock = (id_talla, valor) => {
+        setProducto(prev => ({
+            ...prev,
+            tallas: prev.tallas.map(t =>
+                t.id_talla === id_talla
+                    ? { ...t, stock: Number(valor) }
+                    : t
+            )
+        }))
+    }
+
+    const guardar = async (e) => {
         e.preventDefault()
 
         const formData = new FormData()
         formData.append("nombre", producto.nombre)
         formData.append("precio", producto.precio)
-        formData.append("stock", producto.stock)
         formData.append("id_categoria", producto.id_categoria)
         formData.append("imagen", producto.imagen)
+        formData.append("tallas", JSON.stringify(producto.tallas))
 
         await fetch("https://localhost:7159/api/productos", {
             method: "POST",
             body: formData
         })
 
-        alert("Prenda agregada correctamente 🎀")
         navigate("/admin/productos")
     }
 
     return (
-        <div className="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow border border-[#ffe3ec]">
+        <div className="max-w-2xl mx-auto p-6">
 
-            <h2 className="text-2xl font-semibold mb-6 text-center text-gray-700">
-                Nueva Prenda
-            </h2>
+            {/* VOLVER */}
+            <button
+                onClick={() => navigate("/admin/productos")}
+                className="mb-4 text-sm text-gray-500 hover:text-black"
+            >
+                ← Volver
+            </button>
 
-            <form onSubmit={agregarProducto} className="flex flex-col gap-4">
+            <div className="bg-white p-6 rounded-xl shadow">
 
-                <input
-                    type="text"
-                    placeholder="Nombre"
-                    onChange={(e) => setProducto({ ...producto, nombre: e.target.value })}
-                    className="border p-3 rounded-xl"
-                />
+                <h2 className="text-xl font-semibold mb-6">
+                    Crear Producto
+                </h2>
 
-                <input
-                    type="number"
-                    placeholder="Precio"
-                    onChange={(e) => setProducto({ ...producto, precio: e.target.value })}
-                    className="border p-3 rounded-xl"
-                />
+                <form onSubmit={guardar} className="flex flex-col gap-4">
 
-                <input
-                    type="number"
-                    placeholder="Stock"
-                    onChange={(e) => setProducto({ ...producto, stock: e.target.value })}
-                    className="border p-3 rounded-xl"
-                />
+                    <input
+                        placeholder="Nombre"
+                        className="border p-3 rounded-lg"
+                        onChange={e => setProducto({ ...producto, nombre: e.target.value })}
+                    />
 
-                <select
-                    onChange={(e) => setProducto({ ...producto, id_categoria: e.target.value })}
-                    className="border p-3 rounded-xl"
-                >
-                    <option value="">Seleccionar categoría</option>
+                    <input
+                        type="number"
+                        placeholder="Precio"
+                        className="border p-3 rounded-lg"
+                        onChange={e => setProducto({ ...producto, precio: e.target.value })}
+                    />
 
-                    {categorias.map(c => (
-                        <option key={c.id_categoria} value={c.id_categoria}>
-                            {c.nombre}
-                        </option>
-                    ))}
-                </select>
+                    <select
+                        className="border p-3 rounded-lg"
+                        onChange={e => setProducto({ ...producto, id_categoria: e.target.value })}
+                    >
+                        <option value="">Categoría</option>
+                        {categorias.map(c => (
+                            <option key={c.id_categoria} value={c.id_categoria}>
+                                {c.nombre}
+                            </option>
+                        ))}
+                    </select>
 
-                <input type="file" onChange={handleImagen} />
+                    {/* 🔥 TALLAS */}
+                    <div>
+                        <h3 className="font-medium mb-3">Tallas disponibles</h3>
 
-                {preview && (
-                    <img src={preview} className="w-32 rounded-xl mt-2" />
-                )}
+                        <div className="grid grid-cols-2 gap-3">
 
-                <button className="bg-[#ff8abe] hover:bg-[#ff73ab] text-white py-3 rounded-xl">
-                    Guardar Prenda
-                </button>
+                            {tallas.map(t => {
+                                const seleccionada = producto.tallas.find(x => x.id_talla === t.id_talla)
 
-            </form>
+                                return (
+                                    <div key={t.id_talla} className="border p-3 rounded-lg">
+
+                                        <label className="flex items-center gap-2">
+                                            <input
+                                                type="checkbox"
+                                                onChange={() => toggleTalla(t.id_talla)}
+                                            />
+                                            {t.talla}
+                                        </label>
+
+                                        {seleccionada && (
+                                            <input
+                                                type="number"
+                                                placeholder="Stock"
+                                                className="mt-2 border p-2 rounded w-full"
+                                                onChange={(e) =>
+                                                    actualizarStock(t.id_talla, e.target.value)
+                                                }
+                                            />
+                                        )}
+
+                                    </div>
+                                )
+                            })}
+
+                        </div>
+                    </div>
+
+                    {/* IMAGEN */}
+                    <input
+                        type="file"
+                        onChange={(e) => {
+                            setProducto({ ...producto, imagen: e.target.files[0] })
+                            setPreview(URL.createObjectURL(e.target.files[0]))
+                        }}
+                    />
+
+                    {preview && (
+                        <img src={preview} className="w-32 rounded-lg" />
+                    )}
+
+                    <button className="bg-black text-white py-3 rounded-lg hover:opacity-90">
+                        Guardar Producto
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
     )

@@ -42,7 +42,7 @@ function AdminLayout() {
                 `${base} ${hover} ${isActive ? active : ""}`
               }
             >
-              📊 Dashboard
+              Dashboard
             </NavLink>
 
             <NavLink
@@ -51,7 +51,7 @@ function AdminLayout() {
                 `${base} ${hover} ${isActive ? active : ""}`
               }
             >
-              👗 Productos
+              Productos
             </NavLink>
 
             <NavLink
@@ -60,7 +60,7 @@ function AdminLayout() {
                 `${base} ${hover} ${isActive ? active : ""}`
               }
             >
-              💰 Ventas
+              Ventas
             </NavLink>
 
           </nav>
