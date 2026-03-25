@@ -1,6 +1,8 @@
 import { Outlet, NavLink, useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 function AdminLayout() {
+  const [menuAbierto, setMenuAbierto] = useState(false)
 
   const navigate = useNavigate()
 
@@ -19,10 +21,31 @@ function AdminLayout() {
     "bg-[#ffc4d6] text-gray-900 shadow-sm"
 
   return (
-    <div className="flex min-h-screen bg-[#fff7fa]">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#fff7fa]">
+
+      {/* TITULO + BOTÓN DE NAV EN TABLET/MÓVIL */}
+      <div className="w-full lg:hidden border-b border-[#ffd6e2] bg-[#fff7fa] p-3">
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="text-2xl font-bold text-gray-800">Panel de Administración</h1>
+          <button
+            onClick={() => setMenuAbierto(!menuAbierto)}
+            className="flex items-center justify-center w-12 h-12 rounded-lg bg-[#ff8abe] text-white text-xl"
+            aria-label={menuAbierto ? "Cerrar menú" : "Abrir menú"}
+          >
+            <i className="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      {menuAbierto && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 lg:hidden"
+          onClick={() => setMenuAbierto(false)}
+        />
+      )}
 
       {/* SIDEBAR */}
-      <aside className="w-64 bg-[#ffe9f0] flex flex-col justify-between border-r border-[#ffd6e2]">
+      <aside className={`${menuAbierto ? "fixed inset-y-0 left-0 z-50 w-64" : "hidden"} lg:flex bg-[#ffe9f0] flex flex-col justify-between border-r border-[#ffd6e2]`}>
 
         <div>
 
@@ -63,6 +86,26 @@ function AdminLayout() {
               Ventas
             </NavLink>
 
+            <NavLink
+              to="/admin/consultas"
+              className={({ isActive }) =>
+                `${base} ${hover} ${isActive ? active : ""}`
+              }
+            >
+              📝 Consultas
+            </NavLink>
+
+            <NavLink
+              to="/admin/perfil"
+              className={({ isActive }) =>
+                `${base} ${hover} ${isActive ? active : ""}`
+              }
+            >
+              👤 Perfil
+            </NavLink>
+
+
+
           </nav>
 
         </div>
@@ -83,9 +126,9 @@ function AdminLayout() {
 
 
       {/* CONTENIDO */}
-      <main className="flex-1 p-10">
+      <main className="flex-1 p-10 lg:pl-16">
 
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">
+        <h1 className="hidden lg:block text-3xl font-bold mb-6 text-gray-800">
           Panel de Administración
         </h1>
 
