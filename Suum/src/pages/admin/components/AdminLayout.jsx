@@ -92,7 +92,7 @@ function AdminLayout() {
                 `${base} ${hover} ${isActive ? active : ""}`
               }
             >
-              📝 Consultas
+              Consultas
             </NavLink>
 
             <NavLink
@@ -101,7 +101,7 @@ function AdminLayout() {
                 `${base} ${hover} ${isActive ? active : ""}`
               }
             >
-              👤 Perfil
+              Perfil
             </NavLink>
 
 

@@ -50,7 +50,7 @@ function Perfil() {
         {/* FOTO DE PERFIL */}
         <div className="flex justify-center mb-8">
           <div className="w-24 h-24 bg-[#ffe2e7] rounded-full flex items-center justify-center text-4xl shadow-md">
-            <i class="fa-solid fa-user"></i>
+            <i className="fa-solid fa-user"></i>
           </div>
         </div>
 
